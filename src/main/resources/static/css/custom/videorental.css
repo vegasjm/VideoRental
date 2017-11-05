@@ -1,0 +1,55 @@
+#container{
+
+}
+#container h3{
+    width: 100%;
+    border: 1px gray solid;
+    color: lightblue;
+    background: black;
+    text-align: center;
+}
+#containerBody{
+
+}
+.myTable{
+    width: 370px;
+    margin-left: 10px;
+    float: left;
+}
+#urlForm{
+    border: 1px gray solid;
+    padding: 5px;
+    width: 310px;
+    padding-bottom: 0px;
+}
+#urlForm button{
+    width: 100px;
+    position: relative;
+    bottom: 20px;
+}
+#urlForm{
+    float: left;
+}
+.gritter-close{
+    display: none;
+    margin-left: 250px;
+    content: "\f00d";
+}
+.gritter-top{
+    background: none !important;}
+.gritter-item{
+    background: none !important;}
+.gritter-bottom{
+    background: none !important;}
+
+#web-analyzer-html-info {
+    height: 70px;
+    border: 1px gray solid;
+    margin-left: 350px;
+    padding: 5px;
+    width: 640px;
+    overflow-y: scroll;
+}
+#video-rental-customers-transactions-table{
+    width: 900px;
+}
