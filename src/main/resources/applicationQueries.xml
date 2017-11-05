@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+    <entry key="SQL.GET.CUSTOMER.BY.ACCOUNTID">
+        SELECT * FROM CUSTOMER WHERE ID = ?
+    </entry>
+
+    <entry key="SQL.GET.ALL.CUSTOMER">
+        SELECT * FROM CUSTOMER
+    </entry>
+
+    <entry key="SQL.GET.MOVIE.BY.ACCOUNTID">
+        SELECT * FROM MOVIES WHERE ID = ?
+    </entry>
+
+    <entry key="SQL.GET.ALL.MOVIES">
+        SELECT * FROM MOVIES
+    </entry>
+
+    <entry key="SQL.INSERT.CUSTOMER">
+       INSERT INTO CUSTOMER (ID,BONUS,FIRST_NAME,LAST_NAME) VALUES
+        ((SELECT MAX(ID)+1 FROM CUSTOMER),0, ?, ?)
+    </entry>
+
+    <entry key="SQL.GET.CUSTOMER.TRANSACTIONS.BY.CUSTOMER.ID">
+        SELECT ID,
+        CUSTOMER_ID,
+        MOVIE_ID,
+        N_DAYS,
+        N_EXTRA_DAYS,
+        PRICE,
+        IS_SETTLED
+        FROM TRANSACTIONS WHERE CUSTOMER_ID = ?
+    </entry>
+
+    <entry key="SQL.INSERT.CUSTOMER.TRANSACTIONS">
+        INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) VALUES
+        ((SELECT MAX(ID)+1 FROM TRANSACTIONS),?,?, ?, ?,?,0)
+    </entry>
+
+    <entry key="SQL.GET.MOVIETYPE.BY.ID">
+        SELECT * FROM MOVIETYPES WHERE ID = ?
+    </entry>
+
+</properties>

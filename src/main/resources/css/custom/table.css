@@ -1,0 +1,151 @@
+.vc-header{
+    height: 50px;
+    margin-bottom: 3px;
+    border-bottom: 1px gray dotted;
+}
+.vc-header h1 {
+    padding: 0;
+    margin: 0 8px;
+    font-size: 24px;
+    font-weight: lighter;
+    color: #2679b5;
+    margin-top: 10px;
+}
+.vc-header span {
+    float: left;
+    margin-top: 2px;
+}
+.vc-info{
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    height: 30px;
+}
+.vc-info .ui-icon{
+    float: left;
+    margin-top: 2px;
+}
+.vc-info-text{
+    position: relative;
+    top: 7px;
+}
+.vc-icon-bigger{
+    zoom: 1.5;
+}
+/*TABLE*/
+.vc-table{
+    background-color: #d7edd4;
+    margin-top: 2px;
+    padding: 3px;
+}
+.vc-table-header{
+    height:25px;
+    font-weight: 900;
+}
+.vc-table-header ul{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+.vc-table-body{
+    height: 300px;
+    overflow-y: scroll;
+    width: 100%;
+}
+.vc-table-body ul{
+    display: block;
+    min-height: 38px;
+    background: #f8faff;
+    border: 1px solid #dae2ea;
+    color: #7c9eb2;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.vc-table-body li{
+    height: 100% !important;
+}
+.vc-table-body li span{
+    position: relative;
+    top: 10px;
+    left: 2px;
+}
+.vc-table-body ul:hover{
+    color: #438eb9;
+    background: #f4f6f7;
+    border-color: #dce2e8;
+}
+.vc-table-footer{
+    height:35px;
+    border-top: 1px gray dotted;
+}
+.vc-table li{
+    width:100px;
+    float: left;
+    display: block;
+    font-size: 13px;
+    height:25px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+    text-align: center;
+}
+.vc-table ul {
+    /*float: left;*/
+    height:25px;
+    margin-left: 0px;
+    -webkit-padding-start: 0px;
+    -webkit-margin-before: 0px;
+}
+.vc-table-col-small{
+    width:50px !important;
+}
+.vc-table-col-big{
+    width:150px !important;
+}
+.vc-table-col-big-extra{
+    width:250px !important;
+}
+.vc-table-col-key{
+    background-color: #9585bf !important;
+    color: #FFF;
+}
+.vc-table-tool-item{
+    margin-top: 2px;
+}
+.vc-table-tool-item:hover {
+    cursor: pointer;
+}
+.vc-table-tool-item .ui-icon{
+    float: left;
+}
+.vc-table-tool-item-label{
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    position: relative;
+    top: 3px;
+    left: 3px;
+}
+.vc-table-tool-item{
+    margin-left: 10px;
+}
+/*TOOLTIP*/
+.vc-image-url span:hover{
+    cursor: pointer;
+}
+.vc-tooltip-header{
+    max-width:200px;
+    max-height:200px;
+    word-wrap: break-word;
+    font-size: 13px;
+    color: #7c9eb2;
+    font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+}
+
