@@ -6,15 +6,14 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ViewController {
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Map<String, Object> model) {
 		model.put("time", new Date());
-		model.put("message", "fff");
+		model.put("message", "Init Page");
 		return "index";
 	}
 

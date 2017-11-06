@@ -1,7 +1,10 @@
 package com.videorental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -15,52 +18,52 @@ import java.sql.Statement;
 public class DataLoadServiceImpl implements DataLoadService{
 
     @Autowired
-    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
+    @Transactional
     public Boolean initDataLoad() {
         try {
-            Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-            statement.execute("DROP TABLE IF EXISTS CUSTOMER");
-            statement.executeUpdate(
+
+            jdbcTemplate.execute("DROP TABLE IF EXISTS CUSTOMER");
+            jdbcTemplate.update(
                     "CREATE TABLE CUSTOMER(" +
                             "ID INTEGER Primary key, " +
                             "BONUS INTEGER, " +
                             "FIRST_NAME varchar(30) not null, " +
                             "LAST_NAME varchar(30) not null)"
             );
-            statement.executeUpdate("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (1,0,'DONALD', 'TRUMP')");
-            statement.executeUpdate("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (2,0,'BARACK', 'OBAMA')");
-            statement.executeUpdate("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (3,0,'BILL', 'CLINTON')");
-            statement.executeUpdate("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (4,0,'VLADIMIR', 'ULIANOV')");
+            jdbcTemplate.update("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (1,3,'DONALD', 'TRUMP')");
+            jdbcTemplate.update("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (2,1,'BARACK', 'OBAMA')");
+            jdbcTemplate.update("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (3,2,'BILL', 'CLINTON')");
+            jdbcTemplate.update("INSERT INTO CUSTOMER (ID, BONUS, FIRST_NAME, LAST_NAME) VALUES (4,1,'VLADIMIR', 'ULIANOV')");
 
-            statement.execute("DROP TABLE IF EXISTS MOVIES");
-            statement.executeUpdate(
+            jdbcTemplate.execute("DROP TABLE IF EXISTS MOVIES");
+            jdbcTemplate.update(
                     "CREATE TABLE MOVIES(" +
                             "ID INTEGER Primary key, " +
                             "MOVIETYPEID INTEGER, " +
                             "TITLE varchar(30) not null, " +
                             "DESCRIPTION varchar(200) not null)"
             );
-            statement.executeUpdate("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (1,1,'The Godfather', 'Lorem ipsum...')");
-            statement.executeUpdate("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (2,2,'The Lord of The Rings', 'Lorem ipsum...')");
-            statement.executeUpdate("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (3,1,'Forest Gump', 'Lorem ipsum')");
-            statement.executeUpdate("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (4,2,'Pulp Fiction', 'Lorem ipsum')");
-            statement.executeUpdate("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (5,3,'Spartacus', 'Lorem ipsum')");
+            jdbcTemplate.update("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (1,1,'The Godfather', 'Lorem ipsum...')");
+            jdbcTemplate.update("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (2,2,'The Lord of The Rings', 'Lorem ipsum...')");
+            jdbcTemplate.update("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (3,1,'Forest Gump', 'Lorem ipsum')");
+            jdbcTemplate.update("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (4,2,'Pulp Fiction', 'Lorem ipsum')");
+            jdbcTemplate.update("INSERT INTO MOVIES (ID, MOVIETYPEID, TITLE, DESCRIPTION) VALUES (5,3,'Spartacus', 'Lorem ipsum')");
 
-            statement.execute("DROP TABLE IF EXISTS MOVIETYPES");
-            statement.executeUpdate(
+            jdbcTemplate.execute("DROP TABLE IF EXISTS MOVIETYPES");
+            jdbcTemplate.update(
                     "CREATE TABLE MOVIETYPES(" +
                             "ID INTEGER Primary key, " +
                             "DESCRIPTION varchar(200) not null)"
             );
-            statement.executeUpdate("INSERT INTO MOVIETYPES (ID, DESCRIPTION) VALUES (1,'New release')");
-            statement.executeUpdate("INSERT INTO MOVIETYPES (ID, DESCRIPTION) VALUES (2,'Regular Film')");
-            statement.executeUpdate("INSERT INTO MOVIETYPES (ID, DESCRIPTION) VALUES (3,'Old Film')");
+            jdbcTemplate.update("INSERT INTO MOVIETYPES (ID, DESCRIPTION) VALUES (1,'New release')");
+            jdbcTemplate.update("INSERT INTO MOVIETYPES (ID, DESCRIPTION) VALUES (2,'Regular Film')");
+            jdbcTemplate.update("INSERT INTO MOVIETYPES (ID, DESCRIPTION) VALUES (3,'Old Film')");
 
-            statement.execute("DROP TABLE IF EXISTS TRANSACTIONS");
-            statement.executeUpdate(
+            jdbcTemplate.execute("DROP TABLE IF EXISTS TRANSACTIONS");
+            jdbcTemplate.update(
                     "CREATE TABLE TRANSACTIONS(" +
                             "ID INTEGER Primary key, " +
                             "CUSTOMER_ID INTEGER, " +
@@ -70,21 +73,19 @@ public class DataLoadServiceImpl implements DataLoadService{
                             "PRICE INTEGER, " +
                             "IS_SETTLED INTEGER)"
             );
-            statement.executeUpdate("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
+            jdbcTemplate.update("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
                     "VALUES (1,1,1,1,0,40,0)");
-            statement.executeUpdate("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
+            jdbcTemplate.update("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
                     "VALUES (2,1,2,4,3,240,0)");
-            statement.executeUpdate("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
+            jdbcTemplate.update("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
                     "VALUES (3,2,2,7,0,280,0)");
-            statement.executeUpdate("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
+            jdbcTemplate.update("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
                     "VALUES (4,3,3,6,2,320,0)");
-            statement.executeUpdate("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
+            jdbcTemplate.update("INSERT INTO TRANSACTIONS (ID,CUSTOMER_ID,MOVIE_ID,N_DAYS,N_EXTRA_DAYS,PRICE,IS_SETTLED) " +
                     "VALUES (5,4,4,2,1,120,0)");
-            statement.close();
-            connection.close();
             return true;
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }

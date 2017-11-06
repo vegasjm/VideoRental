@@ -15,4 +15,6 @@ public interface VideoRentalService {
     List<MovieDTO> getAllMovies();
 
     Boolean insertCustomerTransaction(Long customerId, Long movieId, Long nDays, Long nExtraDays);
+
+    Long priceSimulation(Long movieId, Long nDays, Long nExtraDays);
 }

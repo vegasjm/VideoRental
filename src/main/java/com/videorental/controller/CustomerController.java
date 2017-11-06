@@ -13,7 +13,7 @@ import java.util.List;
  * Created by vegasjm on 05/11/2017.
  */
 @RestController
-@RequestMapping("customers")
+@RequestMapping("api/customers")
 public class CustomerController {
     @Autowired
     private CustomerService customerService;

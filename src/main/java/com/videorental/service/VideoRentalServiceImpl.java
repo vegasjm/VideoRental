@@ -41,6 +41,9 @@ public class VideoRentalServiceImpl implements VideoRentalService{
     private static final long PREMIUM_PRICE = 40;
     private static final long BASIC_PRICE = 30;
 
+    private static final int NEWRELEASE_BONUS = 2;
+    private static final int OTHERS_BONUS = 1;
+
     private static final String NEW_RELEASE ="New release";
     private static final String REGULAR_FILM ="Regular Film";
     private static final String OLD_FILM ="Old Film";
@@ -151,6 +154,37 @@ public class VideoRentalServiceImpl implements VideoRentalService{
                 price = (5*PREMIUM_PRICE)  +  (((nDays.longValue()+nExtraDays.longValue())-5)*BASIC_PRICE);
             }
         }
+        if(movieTypeId==1){
+            customerDAO.updateBonus(customerId,NEWRELEASE_BONUS);
+        }else{
+            customerDAO.updateBonus(customerId,OTHERS_BONUS);
+        }
         return transactionDAO.insertCustomerTransaction(customerId,movieId,nDays,nExtraDays,price);
+    }
+
+    @Override
+    public Long priceSimulation(Long movieId, Long nDays, Long nExtraDays) {
+        MovieDTO movie = movieDAO.getMovieById(movieId);
+        Long movieTypeId = movie.getMovieTypeId();
+        MovieTypeDTO mtype = movieTypeDAO.getMovieTypeById(movieTypeId);
+        Long price = 0l;
+        if(mtype!=null && mtype.getDescription().equals(NEW_RELEASE)){
+            price = (nDays.longValue()+nExtraDays.longValue())*PREMIUM_PRICE;
+        }
+        if(mtype!=null && mtype.getDescription().equals(REGULAR_FILM)){
+            if((nDays.longValue()+nExtraDays.longValue())<=3){
+                price = (nDays.longValue()+nExtraDays.longValue())*PREMIUM_PRICE;
+            }else{
+                price = (3*PREMIUM_PRICE)  +  (((nDays.longValue()+nExtraDays.longValue())-3)*BASIC_PRICE);
+            }
+        }
+        if(mtype!=null && mtype.getDescription().equals(OLD_FILM)){
+            if((nDays.longValue()+nExtraDays.longValue())<=5){
+                price = (nDays.longValue()+nExtraDays.longValue())*PREMIUM_PRICE;
+            }else{
+                price = (5*PREMIUM_PRICE)  +  (((nDays.longValue()+nExtraDays.longValue())-5)*BASIC_PRICE);
+            }
+        }
+        return price;
     }
 }

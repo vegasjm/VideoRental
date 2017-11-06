@@ -81,7 +81,7 @@
     border-color: #dce2e8;
 }
 .vc-table-footer{
-    height:35px;
+    height:40px;
     border-top: 1px gray dotted;
 }
 .vc-table li{
@@ -126,12 +126,12 @@
     float: left;
 }
 .vc-table-tool-item-label{
-    color: #3a87ad;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-    position: relative;
-    top: 3px;
-    left: 3px;
+    /*color: #3a87ad;*/
+    /*background-color: #d9edf7;*/
+    /*border-color: #bce8f1;*/
+    /*position: relative;*/
+    /*top: 3px;*/
+    /*left: 3px;*/
 }
 .vc-table-tool-item{
     margin-left: 10px;

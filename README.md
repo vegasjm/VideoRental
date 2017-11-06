@@ -3,32 +3,35 @@ Application about a Videoclub internal Management
 
 API information
 
-WelcomePage:	 		  
+WelcomePage:	 		 
 **GET**  http://localhost:8080/
 
 alive: 	         		  
-**GET**  http://localhost:8080/management/welcome
+**GET**  http://localhost:8080/api/management/welcome
+
+getCustomerTransactions:  
+**GET**  http://localhost:8080/api/management/getCustomerTransactions   Params: [customerId]
+
+getAllMovies:			  
+**GET**  http://localhost:8080/api/management/getAllMovies
+
+insertCustomerTransaction:
+**POST** http://localhost:8080/api/management/insertCustomerTransaction Params: [customerId,movieId,nDays,nExtraDays]
+
+priceSimulation:
+**POST** http://localhost:8080/api/management/priceSimulation   Params: [movieId,nDays,nExtraDays]
 
 initDataLoad:	 		  
 **GET**  http://localhost:8080/initDataLoad/
 
 getCustomerById: 		  
-**GET**  http://localhost:8080/customers/getCustomer  		Params: [id] 
+**GET**  http://localhost:8080/api/customers/getCustomer    Params: [id] 
 
 getAllCustomers: 		  
-**GET**  http://localhost:8080/customers/getAllCustomers
+**GET**  http://localhost:8080/api/customers/getAllCustomers
 
 insertCustomer:  		  
-**POST** http://localhost:8080/customers/insertCustomer 	Params: [name,surname]
-
-getCustomerTransactions:  
-**GET**  http://localhost:8080/getCustomerTransactions			Params: [customerId]
-
-getAllMovies:			  
-**GET**  http://localhost:8080/getAllMovies
-
-insertCustomerTransaction:
-**POST** http://localhost:8080/insertCustomerTransaction			Params: [customerId,movieId,nDays,nExtraDays]
+**POST** http://localhost:8080/api/customers/insertCustomer Params: [name,surname]
 
 How tu run the application: 
 
@@ -55,7 +58,8 @@ You also can interact with the API’s resources using SwaggerUI in the URL:
 This application needs to call the method "initDataLoad" to set the data and the database to make the application run properly, 
 one SqlLite Database will be created in the root of your computer automatically, You can change the place where you want to store the
 database changing the path of the DataSource Bean in the File: **PropertiesConfigurer.java**,
-so the first thing you have to do when the application is deployed is execute this endpoint.
+so the first thing you have to do when the application is deployed is execute this endpoint, In the UI that I have developed you have a
+button for this purpouse called "Restart Database".
 
 Then in the welcome page you are gonna be able to manage all the functions of the API with an UI that simulates a VideoClub.
 You will have one table with all your customers, and when you click on each one, one table with the customers transactions will appear, there you can

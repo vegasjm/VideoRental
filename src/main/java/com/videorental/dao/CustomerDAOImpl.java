@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -29,6 +30,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Value("${SQL.INSERT.CUSTOMER}")
     private String insertCustomerSQL;
+
+    @Value("${SQL.UPDATE.CUSTOMER.BONUS}")
+    private String updateCustomerBonusSQL;
 
     @Override
     public CustomerDTO getCustomerById(Long id) {
@@ -58,6 +62,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    @Transactional
     public Boolean insertCustomer(String name, String surname) {
         logger.log(Level.INFO, "CustomerDAOImpl - insertCustomer name:"+name+"  /  surname:"+surname+"");
         try {
@@ -66,6 +71,20 @@ public class CustomerDAOImpl implements CustomerDAO {
             return result;
         }catch(Exception e){
             logger.log(Level.SEVERE, "CustomerDAOImpl - insertCustomer name:"+name+"  /  surname:"+surname+": "+e.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    @Transactional
+    public Boolean updateBonus(Long customerId, int bonus) {
+        logger.log(Level.INFO, "CustomerDAOImpl - updateBonus id:"+customerId+"  /  bonus:"+bonus+"");
+        try {
+            Object[] parameters = new Object[] {bonus,customerId};
+            boolean result = jdbcTemplate.update(updateCustomerBonusSQL,parameters)==1;
+            return result;
+        }catch(Exception e){
+            logger.log(Level.SEVERE, "CustomerDAOImpl - updateBonus id:"+customerId+"  /  bonus:"+bonus+": "+e.getMessage());
         }
         return false;
     }

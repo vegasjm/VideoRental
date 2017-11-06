@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -39,6 +40,7 @@ public class TransactionDAOImpl implements TransactionDAO{
     }
 
     @Override
+    @Transactional
     public Boolean insertCustomerTransaction(Long customerId,Long movieId,Long nDays,Long nExtraDays,Long price) {
             logger.log(Level.INFO, "TransactionDAOImpl - insertCustomerTransaction customerId:"
                     + customerId + "  /  movieId:" + movieId + "  /  nDays:" + nDays + "  /  nExtraDays:" + nExtraDays + "  /  price:" + price + "");

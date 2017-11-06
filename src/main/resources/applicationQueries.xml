@@ -23,6 +23,10 @@
         ((SELECT MAX(ID)+1 FROM CUSTOMER),0, ?, ?)
     </entry>
 
+    <entry key="SQL.UPDATE.CUSTOMER.BONUS">
+        UPDATE CUSTOMER SET BONUS = (BONUS + ?) WHERE ID = ?
+    </entry>
+
     <entry key="SQL.GET.CUSTOMER.TRANSACTIONS.BY.CUSTOMER.ID">
         SELECT ID,
         CUSTOMER_ID,

@@ -11,4 +11,5 @@ public interface CustomerDAO {
     CustomerDTO getCustomerById(Long id);
     List<CustomerDTO> getAllCustomers();
     Boolean insertCustomer(String name, String surname);
+    Boolean updateBonus(Long customerId, int i);
 }

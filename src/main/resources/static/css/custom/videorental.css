@@ -1,5 +1,5 @@
 #container{
-
+    height: 100%;
 }
 #container h3{
     width: 100%;
@@ -10,7 +10,14 @@
     margin: 0px;
 }
 #containerBody{
-
+    height: 412px;
+    width: 1200px;
+    border: 1px gray solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    background-color: cornsilk;
+    margin: auto;
 }
 .myTable{
     width: 370px;
@@ -52,5 +59,42 @@
     overflow-y: scroll;
 }
 #video-rental-customers-transactions-table{
-    width: 900px;
+    width: 800px;
+}
+.ui-dialog{
+    position: absolute;
+}
+button{
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 5px !important;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+#restartDatabase{
+    margin: 10px;
+    margin-left: 80px;
+}
+.video-rental-customers-table-row:hover{
+    cursor: hand;
 }

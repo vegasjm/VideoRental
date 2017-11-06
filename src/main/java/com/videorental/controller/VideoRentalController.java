@@ -15,7 +15,7 @@ import java.util.List;
  * Created by vegasjm on 05/11/2017.
  */
 @RestController
-@RequestMapping("management")
+@RequestMapping("api/management")
 public class VideoRentalController {
 
     @Autowired
@@ -43,6 +43,12 @@ public class VideoRentalController {
     public @ResponseBody
     Boolean insertCustomerTransaction(@RequestParam("customerId") Long customerId, @RequestParam("movieId") Long movieId, @RequestParam("nDays") Long nDays, @RequestParam("nExtraDays") Long nExtraDays) throws IOException {
         return videoRentalService.insertCustomerTransaction(customerId,movieId, nDays, nExtraDays);
+    }
+
+    @RequestMapping(value = "/priceSimulation", method = RequestMethod.POST,  produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody
+    Long priceSimulation(@RequestParam("movieId") Long movieId, @RequestParam("nDays") Long nDays, @RequestParam("nExtraDays") Long nExtraDays) throws IOException {
+        return videoRentalService.priceSimulation(movieId, nDays, nExtraDays);
     }
 
 }

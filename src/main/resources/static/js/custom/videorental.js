@@ -10,6 +10,9 @@ var VIDEORENTAL = VIDEORENTAL || {
         addCustomerTransactionDialogId: '#video-rental-add-customer-transaction-dialog',
         addCustomerTransactionDialog: null,
 
+        priceSimulationDialogId: '#video-rental-price-simulation-dialog',
+        priceSimulationDialog: null,
+
         selectedCustomerId:null,
 
         customerTable:null,
@@ -19,10 +22,35 @@ var VIDEORENTAL = VIDEORENTAL || {
             VIDEORENTAL.buildTable();
             VIDEORENTAL.buildDialogs();
             VIDEORENTAL.buildEvents();
+            $.ajax("api/management/getAllMovies",{
+                type: 'GET',
+                dataType: 'json',
+                async : false,
+                cache: false,
+                success: (function (data, textStatus, jqXHR) {
+                    var movies = data;
+                    $.each(movies,function(idx, movie){
+                        $('#movieNewCustoTx').append('<option value="'+movie.id+'">'+movie.title+'</option>');
+                        $('#movieSimulate').append('<option value="'+movie.id+'">'+movie.title+'</option>');
+                    });
+                }),
+                error: (function (jqXHR, textStatus, errorThrown) {
+                    $.gritter.add({
+                        title: 'ERROR while loading movies.',
+                        text: 'Check the database connection.',
+                        sticky: false,
+                        class_name: 'gritter-error',
+                        fade_in_speed: 'medium',
+                        fade_out_speed: 2000,
+                        time: 3000
+                    });
+                }),
+                showErrorToast: false
+            });
         },
         buildTable:function(){
             var customersData;
-            $.ajax("/customers/getAllCustomers",{
+            $.ajax("api/customers/getAllCustomers",{
                 type: 'GET',
                 dataType: 'json',
                 async : false,
@@ -69,19 +97,26 @@ var VIDEORENTAL = VIDEORENTAL || {
                 ]
             });
             $(VIDEORENTAL.customersTableId).html('');
+            if(customersData!=null)
             VIDEORENTAL.customerTable.render();
-
-        },
+            $('.video-rental-customers-table-row').click(
+                function(){
+                    var customerId = this.getAttribute('data-object-id');
+                    VIDEORENTAL.selectedCustomerId = customerId;
+                    VIDEORENTAL.buildTransactionsTable(VIDEORENTAL.selectedCustomerId);
+                }
+            );
+            },
         buildDialogs: function(){
             VIDEORENTAL.addCustomerDialog = $(VIDEORENTAL.addCustomerDialogId).dialog({
                 autoOpen: false,
-                height: 220,
+                height: 240,
                 width: 350,
                 modal: true,
                 resizable: false,
                 buttons: {
                     "Add": function(){
-                        $.ajax("/customers/insertCustomer",{
+                        $.ajax("api/customers/insertCustomer",{
                             type: 'POST',
                             data: {
                                 name: $("#nameNewCusto").val(),
@@ -127,23 +162,25 @@ var VIDEORENTAL = VIDEORENTAL || {
                                 });
                             })
                         });
-                        VIDEORENTAL.addCustomerDialog.dialog( "close" );
+                        VIDEORENTAL.addCustomerDialog.dialog('destroy');
+                        VIDEORENTAL.buildDialogs();
                     },
                     "Cancel": function() {
-                        VIDEORENTAL.addCustomerDialog.dialog( "close" );
+                        VIDEORENTAL.addCustomerDialog.dialog('destroy');
+                        VIDEORENTAL.buildDialogs();
                     }
                 }
             });
 
             VIDEORENTAL.addCustomerTransactionDialog = $(VIDEORENTAL.addCustomerTransactionDialogId).dialog({
                 autoOpen: false,
-                height: 220,
+                height: 240,
                 width: 350,
                 modal: true,
                 resizable: false,
                 buttons: {
                     "Add Transaction": function(){
-                        $.ajax("/management/insertCustomerTransaction",{
+                        $.ajax("api/management/insertCustomerTransaction",{
                             type: 'POST',
                             data: {
                                 customerId: VIDEORENTAL.selectedCustomerId,
@@ -200,47 +237,59 @@ var VIDEORENTAL = VIDEORENTAL || {
                                 VIDEORENTAL.buildTransactionsTable(VIDEORENTAL.selectedCustomerId);
                             }
                         );
-                        VIDEORENTAL.addCustomerTransactionDialog.dialog( "close" );
+                        VIDEORENTAL.addCustomerTransactionDialog.dialog('destroy');
+                        VIDEORENTAL.buildDialogs();
                     },
                     "Cancel": function() {
-                        VIDEORENTAL.addCustomerTransactionDialog.dialog( "close" );
+                        VIDEORENTAL.addCustomerTransactionDialog.dialog('destroy');
+                        VIDEORENTAL.buildDialogs();
                     }
                 }
             });
-            $.ajax("/management/getAllMovies",{
-                type: 'GET',
-                dataType: 'json',
-                async : false,
-                cache: false,
-                success: (function (data, textStatus, jqXHR) {
-                    var movies = data;
-                    $.each(movies,function(idx, movie){
-                        $('#movieNewCustoTx').append('<option value="'+movie.id+'">'+movie.title+'</option>');
-                    });
-                }),
-                error: (function (jqXHR, textStatus, errorThrown) {
-                    $.gritter.add({
-                        title: 'ERROR while loading movies.',
-                        text: 'Check the database connection.',
-                        sticky: false,
-                        class_name: 'gritter-error',
-                        fade_in_speed: 'medium',
-                        fade_out_speed: 2000,
-                        time: 3000
-                    });
-                }),
-                showErrorToast: false
+
+            VIDEORENTAL.priceSimulationDialog = $(VIDEORENTAL.priceSimulationDialogId).dialog({
+                autoOpen: false,
+                height: 280,
+                width: 350,
+                modal: true,
+                resizable: false,
+                buttons: {
+                    "Simulate Price": function(){
+                        $.ajax("api/management/priceSimulation",{
+                            type: 'POST',
+                            data: {
+                                movieId: $("#movieSimulate").val(),
+                                nDays: $("#nDaysSimulate").val(),
+                                nExtraDays: $("#nExtraDaysSimulate").val()
+                            },
+                            dataType: 'json',
+                            cache: false,
+                            async: false,
+                            showErrorToast: false,
+                            success: (function (data, textStatus, jqXHR) {
+                                $('#priceValue').html('<span style="color:green; font-weight: bolder;">PRICE is:'+data+' SEK</span>');
+                            }),
+                            error: (function (jqXHR, textStatus, errorThrown) {
+                                $.gritter.add({
+                                    title: 'ERROR while Simulating Price.',
+                                    text: 'Check the database connection.',
+                                    sticky: false,
+                                    class_name: 'gritter-error',
+                                    fade_in_speed: 'medium',
+                                    fade_out_speed: 2000,
+                                    time: 3000
+                                });
+                            })
+                        });
+                    },
+                    "Cancel": function() {
+                        VIDEORENTAL.priceSimulationDialog.dialog('destroy');
+                        VIDEORENTAL.buildDialogs();
+                    }
+                }
             });
         },
         buildEvents:function(){
-          $('.video-rental-customers-table-row').click(
-              function(){
-                  var customerId = this.getAttribute('data-object-id');
-                  VIDEORENTAL.selectedCustomerId = customerId;
-                  VIDEORENTAL.buildTransactionsTable(VIDEORENTAL.selectedCustomerId);
-              }
-          );
-
             $('#restartDatabase').click(
                 function(){
                     $.ajax("/initDataLoad",{
@@ -249,9 +298,13 @@ var VIDEORENTAL = VIDEORENTAL || {
                         async : false,
                         cache: false,
                         success: (function (data, textStatus, jqXHR) {
-                            $(VIDEORENTAL.customerTransactionsTableId).html('');
+                            $(VIDEORENTAL.customerTransactionsTableId).html(
+                                '<br/><br/><br/><br/><br/><br/><br/><br/>'+
+                                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+                                'Click in a Customer to see the associated transactions'
+                            );
                             $(VIDEORENTAL.customersTableId).html('');
-                            VIDEORENTAL.init();
+                            VIDEORENTAL.buildTable();
                             $.gritter.add({
                                 title: 'Database Reset',
                                 text: 'Database Reset succesfully.',
@@ -260,6 +313,31 @@ var VIDEORENTAL = VIDEORENTAL || {
                                 fade_in_speed: 'medium',
                                 fade_out_speed: 2000,
                                 time: 3000
+                            });
+                            if($('#movieNewCustoTx').html()==null || $('#movieNewCustoTx').html()=='')
+                            $.ajax("api/management/getAllMovies",{
+                                type: 'GET',
+                                dataType: 'json',
+                                async : false,
+                                cache: false,
+                                success: (function (data, textStatus, jqXHR) {
+                                    var movies = data;
+                                    $.each(movies,function(idx, movie){
+                                        $('#movieNewCustoTx').append('<option value="'+movie.id+'">'+movie.title+'</option>');
+                                    });
+                                }),
+                                error: (function (jqXHR, textStatus, errorThrown) {
+                                    $.gritter.add({
+                                        title: 'ERROR while loading movies.',
+                                        text: 'Check the database connection.',
+                                        sticky: false,
+                                        class_name: 'gritter-error',
+                                        fade_in_speed: 'medium',
+                                        fade_out_speed: 2000,
+                                        time: 3000
+                                    });
+                                }),
+                                showErrorToast: false
                             });
                         }),
                         error: (function (jqXHR, textStatus, errorThrown) {
@@ -277,9 +355,12 @@ var VIDEORENTAL = VIDEORENTAL || {
                     });
                 }
             );
+            $('#simulatePriceButton').click(function(){
+                VIDEORENTAL.priceSimulationDialog.dialog( "open" );
+            });
         },
         buildTransactionsTable: function(customerId){
-            $.ajax("/management/getCustomerTransactions?customerId="+customerId,{
+            $.ajax("api/management/getCustomerTransactions?customerId="+customerId,{
                 type: 'GET',
                 dataType: 'json',
                 async : false,
@@ -287,24 +368,33 @@ var VIDEORENTAL = VIDEORENTAL || {
                 success: (function (data, textStatus, jqXHR) {
                     $(VIDEORENTAL.customerTransactionsTableId).html('');
                     var customerTransactions = data;
+                    var customerName = '';
+                    $.ajax("api/customers/getCustomer?id="+customerId,{
+                        type: 'GET',
+                        dataType: 'json',
+                        async : false,
+                        cache: false,
+                        success: (function (data, textStatus, jqXHR) {
+                            customerName = data.firstName+' '+data.lastName;
+                        }),
+                        showErrorToast: false
+                    });
                     VIDEORENTAL.customerTransactionsTable = new TableGenerator({
                         name: VIDEORENTAL.customerTransactionsTableId,
                         data: customerTransactions,
-                        description: 'Table with the customer transactions.',
+                        description: 'Table with the transactions for the Customer: '+customerName,
                         tableContainerId: VIDEORENTAL.customerTransactionsTableId,
                         colDef: [
                             {name:'ID',              objectMap:'id',              keyColumn:true,   classStyle:'vc-table-col-small'},
-                            {name:'Customer',        objectMap:'customer',        },
-                            {name:'Movie',           objectMap:'movie',           classStyle:'vc-table-col-big'},
+                            {name:'Movie',           objectMap:'movie',           classStyle:'vc-table-col-big-extra'},
                             {name:'Days',            objectMap:'nDays',           classStyle:'vc-table-col-small'},
-                            {name:'Extra Days',      objectMap:'nExtraDays',      classStyle:'vc-table-col-small'},
+                            {name:'Extra Days',      objectMap:'nExtraDays'      },
                             {name:'Price',           objectMap:'price',           classStyle:'vc-table-col-small'},
-                            {name:'Pr In time',      objectMap:'priceInTime',     classStyle:'vc-table-col-small'},
-                            {name:'Pr Extra',        objectMap:'priceInExtraTime',classStyle:'vc-table-col-small'},
-                            {name:'Paid',            objectMap:'isSettled',       classStyle:'vc-table-col-small'}
+                            {name:'Pr In time',      objectMap:'priceInTime'     },
+                            {name:'Pr Extra',        objectMap:'priceInExtraTime'}
                         ],
                         buttons:[
-                            {name:'Create',         domId:'create-button',      icon:'ui-icon-plus',                func:VIDEORENTAL.buttons.createTx}
+                            {name:'Create',         domId:'createTx-button',      icon:'ui-icon-plus',                func:VIDEORENTAL.buttons.createTx}
                         ]
                     });
                     VIDEORENTAL.customerTransactionsTable.render();
