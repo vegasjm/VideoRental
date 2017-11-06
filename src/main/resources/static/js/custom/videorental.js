@@ -107,11 +107,17 @@ var VIDEORENTAL = VIDEORENTAL || {
                 }
             );
             },
+        closeFunction:function(){
+            VIDEORENTAL.priceSimulationDialog.dialog('destroy');
+            VIDEORENTAL.addCustomerTransactionDialog.dialog('destroy');
+            VIDEORENTAL.addCustomerDialog.dialog('destroy');
+            VIDEORENTAL.buildDialogs();
+        },
         buildDialogs: function(){
             VIDEORENTAL.addCustomerDialog = $(VIDEORENTAL.addCustomerDialogId).dialog({
                 autoOpen: false,
                 height: 240,
-                width: 350,
+                width: 300,
                 modal: true,
                 resizable: false,
                 buttons: {
@@ -162,20 +168,18 @@ var VIDEORENTAL = VIDEORENTAL || {
                                 });
                             })
                         });
-                        VIDEORENTAL.addCustomerDialog.dialog('destroy');
-                        VIDEORENTAL.buildDialogs();
+                        VIDEORENTAL.closeFunction();
                     },
                     "Cancel": function() {
-                        VIDEORENTAL.addCustomerDialog.dialog('destroy');
-                        VIDEORENTAL.buildDialogs();
+                        VIDEORENTAL.closeFunction();
                     }
                 }
             });
 
             VIDEORENTAL.addCustomerTransactionDialog = $(VIDEORENTAL.addCustomerTransactionDialogId).dialog({
                 autoOpen: false,
-                height: 240,
-                width: 350,
+                height: 300,
+                width: 300,
                 modal: true,
                 resizable: false,
                 buttons: {
@@ -237,20 +241,18 @@ var VIDEORENTAL = VIDEORENTAL || {
                                 VIDEORENTAL.buildTransactionsTable(VIDEORENTAL.selectedCustomerId);
                             }
                         );
-                        VIDEORENTAL.addCustomerTransactionDialog.dialog('destroy');
-                        VIDEORENTAL.buildDialogs();
+                        VIDEORENTAL.closeFunction();
                     },
                     "Cancel": function() {
-                        VIDEORENTAL.addCustomerTransactionDialog.dialog('destroy');
-                        VIDEORENTAL.buildDialogs();
+                        VIDEORENTAL.closeFunction();
                     }
                 }
             });
 
             VIDEORENTAL.priceSimulationDialog = $(VIDEORENTAL.priceSimulationDialogId).dialog({
                 autoOpen: false,
-                height: 280,
-                width: 350,
+                height: 300,
+                width: 300,
                 modal: true,
                 resizable: false,
                 buttons: {
@@ -283,8 +285,7 @@ var VIDEORENTAL = VIDEORENTAL || {
                         });
                     },
                     "Cancel": function() {
-                        VIDEORENTAL.priceSimulationDialog.dialog('destroy');
-                        VIDEORENTAL.buildDialogs();
+                        VIDEORENTAL.closeFunction();
                     }
                 }
             });

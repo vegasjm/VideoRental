@@ -98,3 +98,17 @@ button{
 .video-rental-customers-table-row:hover{
     cursor: hand;
 }
+.ui-dialog-content{
+    padding: 20px;
+}
+.ui-widget-header {
+    padding: 10px !important;
+    font-weight: bolder;
+    color:#953b39;
+}
+.ui-dialog-content label {
+    font-weight: bolder;
+}
+.ui-dialog-titlebar-close{
+    display: none;
+}
