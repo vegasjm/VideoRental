@@ -26,7 +26,7 @@ You also can interact with the API’s resources using SwaggerUI in the URL:
 This application needs to call the method "initDataLoad" to set the data and the database to make the application run properly, 
 one SqlLite Database will be created in the root of the USER HOME folder automatically, You can change the place where you want to store the
 database changing the path of the DataSource Bean in the File: **PropertiesConfigurer.java**,
-so the first thing you have to do when the application is deployed is execute this endpoint, In the UI that I have developed you have a
+so the first thing you have to do when the application is deployed is execute this endpoint, In the UI that there is a
 button for this purpouse called "Restart Database".
 
 Then in the welcome page you are gonna be able to manage all the functions of the API with an UI that simulates a VideoClub.
