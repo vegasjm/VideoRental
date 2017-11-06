@@ -6,7 +6,7 @@ How to run the application:
 Software Requirements: Maven4, Git2, JDK8
  
 You just have to clone the project from My GitHub repository,
-runnin this Command Line in the folder you decide:
+running this Command Line in the folder you decide:
 
 **git clone git://github.com/vegasjm/VideoRental**
 
