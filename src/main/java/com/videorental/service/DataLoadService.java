@@ -1,4 +1,4 @@
-package com.videorental.persistence.service;
+package com.videorental.service;
 
 /**
  * Created by vegasjm on 05/11/2017.

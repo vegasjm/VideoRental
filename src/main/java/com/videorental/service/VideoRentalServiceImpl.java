@@ -1,14 +1,14 @@
-package com.videorental.persistence.service;
+package com.videorental.service;
 
-import com.videorental.persistence.dao.CustomerDAO;
-import com.videorental.persistence.dao.MovieDAO;
-import com.videorental.persistence.dao.MovieTypeDAO;
-import com.videorental.persistence.dao.TransactionDAO;
-import com.videorental.persistence.model.CustomerDTO;
-import com.videorental.persistence.model.MovieDTO;
-import com.videorental.persistence.model.MovieTypeDTO;
-import com.videorental.persistence.model.TransactionDTO;
-import com.videorental.persistence.webModel.TransactionModel;
+import com.videorental.dao.CustomerDAO;
+import com.videorental.dao.MovieDAO;
+import com.videorental.dao.MovieTypeDAO;
+import com.videorental.dao.TransactionDAO;
+import com.videorental.model.CustomerDTO;
+import com.videorental.model.MovieDTO;
+import com.videorental.model.MovieTypeDTO;
+import com.videorental.model.TransactionDTO;
+import com.videorental.webModel.TransactionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

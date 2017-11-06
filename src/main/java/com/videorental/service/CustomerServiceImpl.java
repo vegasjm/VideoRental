@@ -1,7 +1,7 @@
-package com.videorental.persistence.service;
+package com.videorental.service;
 
-import com.videorental.persistence.dao.CustomerDAO;
-import com.videorental.persistence.model.CustomerDTO;
+import com.videorental.dao.CustomerDAO;
+import com.videorental.model.CustomerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

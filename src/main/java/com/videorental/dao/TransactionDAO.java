@@ -1,6 +1,6 @@
-package com.videorental.persistence.dao;
+package com.videorental.dao;
 
-import com.videorental.persistence.model.TransactionDTO;
+import com.videorental.model.TransactionDTO;
 
 import java.util.List;
 

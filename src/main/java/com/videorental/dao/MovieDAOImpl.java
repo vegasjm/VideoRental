@@ -1,6 +1,6 @@
-package com.videorental.persistence.dao;
+package com.videorental.dao;
 
-import com.videorental.persistence.model.MovieDTO;
+import com.videorental.model.MovieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

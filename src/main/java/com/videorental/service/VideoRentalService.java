@@ -1,7 +1,7 @@
-package com.videorental.persistence.service;
+package com.videorental.service;
 
-import com.videorental.persistence.model.MovieDTO;
-import com.videorental.persistence.webModel.TransactionModel;
+import com.videorental.model.MovieDTO;
+import com.videorental.webModel.TransactionModel;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
-package com.videorental.persistence.dao;
+package com.videorental.service;
 
-import com.videorental.persistence.model.CustomerDTO;
+import com.videorental.model.CustomerDTO;
 
 import java.util.List;
 
 /**
  * Created by vegasjm on 05/11/2017.
  */
-public interface CustomerDAO {
+public interface CustomerService {
     CustomerDTO getCustomerById(Long id);
     List<CustomerDTO> getAllCustomers();
     Boolean insertCustomer(String name, String surname);

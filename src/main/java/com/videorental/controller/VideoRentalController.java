@@ -1,8 +1,8 @@
 package com.videorental.controller;
 
-import com.videorental.persistence.model.MovieDTO;
-import com.videorental.persistence.service.VideoRentalService;
-import com.videorental.persistence.webModel.TransactionModel;
+import com.videorental.model.MovieDTO;
+import com.videorental.service.VideoRentalService;
+import com.videorental.webModel.TransactionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

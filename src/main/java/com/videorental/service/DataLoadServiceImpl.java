@@ -1,4 +1,4 @@
-package com.videorental.persistence.service;
+package com.videorental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

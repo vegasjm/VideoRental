@@ -1,6 +1,6 @@
 package com.videorental.controller;
 
-import com.videorental.persistence.service.DataLoadService;
+import com.videorental.service.DataLoadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

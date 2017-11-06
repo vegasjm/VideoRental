@@ -1,4 +1,4 @@
-package com.videorental.persistence.webModel;
+package com.videorental.webModel;
 
 /**
  * Created by vegasjm on 05/11/2017.

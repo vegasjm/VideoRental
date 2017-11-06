@@ -1,4 +1,4 @@
-package com.videorental.persistence.model;
+package com.videorental.model;
 
 import javax.persistence.Column;
 

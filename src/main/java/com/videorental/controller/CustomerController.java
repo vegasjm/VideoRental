@@ -1,7 +1,7 @@
 package com.videorental.controller;
 
-import com.videorental.persistence.model.CustomerDTO;
-import com.videorental.persistence.service.CustomerService;
+import com.videorental.model.CustomerDTO;
+import com.videorental.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
