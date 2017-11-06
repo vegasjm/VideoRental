@@ -15,10 +15,10 @@ getCustomerTransactions:
 getAllMovies:			  
 **GET**  http://localhost:8080/api/management/getAllMovies
 
-insertCustomerTransaction:
+insertCustomerTransaction:    
 **POST** http://localhost:8080/api/management/insertCustomerTransaction Params: [customerId,movieId,nDays,nExtraDays]
 
-priceSimulation:
+priceSimulation:   
 **POST** http://localhost:8080/api/management/priceSimulation   Params: [movieId,nDays,nExtraDays]
 
 initDataLoad:	 		  
