@@ -3,23 +3,23 @@ Application about a Videoclub internal Management
 
 API information
 
-WelcomePage:	 		    GET  http://localhost:8080/
+WelcomePage:	 		    #GET  http://localhost:8080/
 
-initDataLoad:	 		    GET  http://localhost:8080/initDataLoad/
+initDataLoad:	 		    #GET  http://localhost:8080/initDataLoad/
 
-getCustomerById: 		    GET  http://localhost:8080/customers/getCustomer  		Params: [id] 
+getCustomerById: 		    #GET  http://localhost:8080/customers/getCustomer  		Params: [id] 
 
-getAllCustomers: 		    GET  http://localhost:8080/customers/getAllCustomers
+getAllCustomers: 		    #GET  http://localhost:8080/customers/getAllCustomers
 
-insertCustomer:  		    POST http://localhost:8080/customers/insertCustomer 	Params: [name,surname]
+insertCustomer:  		    #POST http://localhost:8080/customers/insertCustomer 	Params: [name,surname]
 
-alive: 	         		    GET  http://localhost:8080/management/welcome
+alive: 	         		    #GET  http://localhost:8080/management/welcome
 
-getCustomerTransactions:    GET  http://localhost:8080/getCustomerTransactions			Params: [customerId]
+getCustomerTransactions:    #GET  http://localhost:8080/getCustomerTransactions			Params: [customerId]
 
-getAllMovies:			    GET  http://localhost:8080/getAllMovies
+getAllMovies:			    #GET  http://localhost:8080/getAllMovies
 
-insertCustomerTransaction:	POST http://localhost:8080/insertCustomerTransaction			Params: [customerId,movieId,nDays,nExtraDays]
+insertCustomerTransaction:	#POST http://localhost:8080/insertCustomerTransaction			Params: [customerId,movieId,nDays,nExtraDays]
 
 How tu run the application: You just have to install the war file included in a tomcat server.
 This application need to call the method "initDataLoad" to set the data and the database to make de application run properly, 
