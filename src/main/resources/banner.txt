@@ -1,0 +1,12 @@
+${AnsiColor.BRIGHT_BLUE}                                           _    ____    _____    _____    _____
+${AnsiColor.BRIGHT_BLUE}                                          | |  / __ \  |  __ \  |  __ \  |_   _|
+${AnsiColor.BRIGHT_BLUE}                                          | | | |  | | | |__) | | |  | |   | |
+${AnsiColor.BRIGHT_BLUE}                                      _   | | | |  | | |  _  /  | |  | |   | |
+${AnsiColor.BRIGHT_BLUE}                                     | |__| | | |__| | | | \ \  | |__| |  _| |_
+${AnsiColor.BRIGHT_BLUE}                                      \____/   \____/  |_|  \_\ |_____/  |_____|${AnsiColor.BRIGHT_RED}:: Running Spring Boot ${spring-boot.version} ::${AnsiStyle.NORMAL}
+${AnsiColor.BRIGHT_GREEN}                         __      __  _____   _____    ______    ____   ${AnsiColor.BRIGHT_MAGENTA}    _____   _        _    _   ____
+${AnsiColor.BRIGHT_GREEN}                         \ \    / / |_   _| |  __ \  |  ____|  / __ \  ${AnsiColor.BRIGHT_MAGENTA}   / ____| | |      | |  | | |  _ \
+${AnsiColor.BRIGHT_GREEN}                          \ \  / /    | |   | |  | | | |__    | |  | | ${AnsiColor.BRIGHT_MAGENTA}  | |      | |      | |  | | | |_) |
+${AnsiColor.BRIGHT_GREEN}                           \ \/ /     | |   | |  | | |  __|   | |  | | ${AnsiColor.BRIGHT_MAGENTA}  | |      | |      | |  | | |  _ <
+${AnsiColor.BRIGHT_GREEN}                            \  /     _| |_  | |__| | | |____  | |__| | ${AnsiColor.BRIGHT_MAGENTA}  | |____  | |____  | |__| | | |_) |
+${AnsiColor.BRIGHT_GREEN}                             \/     |_____| |_____/  |______|  \____/  ${AnsiColor.BRIGHT_MAGENTA}   \_____| |______|  \____/  |____/

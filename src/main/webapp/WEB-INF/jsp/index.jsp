@@ -24,7 +24,7 @@
   <script src="<c:url value="/js/custom/tableGenerator.js" />" type="text/javascript"></script>
   <script src="<c:url value="/js/custom/videorental.js" />" type="text/javascript"></script>
 </head>
-<br>
+<body>
 <div id="container">
   <h3>My Video Club</h3> <button id="restartDatabase" value="Restart Database">Restart Database</button>
   <div id="containerBody">
