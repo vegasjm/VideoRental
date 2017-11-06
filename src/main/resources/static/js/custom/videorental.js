@@ -325,6 +325,7 @@ var VIDEORENTAL = VIDEORENTAL || {
                                     var movies = data;
                                     $.each(movies,function(idx, movie){
                                         $('#movieNewCustoTx').append('<option value="'+movie.id+'">'+movie.title+'</option>');
+                                        $('#movieSimulate').append('<option value="'+movie.id+'">'+movie.title+'</option>');
                                     });
                                 }),
                                 error: (function (jqXHR, textStatus, errorThrown) {
