@@ -4,6 +4,7 @@ Application about a Videoclub internal Management
 API information
 
 WelcomePage:	 		    GET  http://localhost:8080/
+
 initDataLoad:	 		    GET  http://localhost:8080/initDataLoad/
 getCustomerById: 		    GET  http://localhost:8080/customers/getCustomer  		Params: [id] 
 getAllCustomers: 		    GET  http://localhost:8080/customers/getAllCustomers
