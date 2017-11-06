@@ -51,7 +51,7 @@ public class PropertiesConfigurer {
     public DataSource dataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.sqlite.JDBC");
-        dataSourceBuilder.url("jdbc:sqlite:/sqlitedb.db");
+        dataSourceBuilder.url("jdbc:sqlite:"+System.getProperty ("user.home")+"\\sqlitedb.db");
         dataSourceBuilder.username("");
         dataSourceBuilder.password("");
         return dataSourceBuilder.build();
