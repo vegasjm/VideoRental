@@ -5,6 +5,8 @@ API information
 
 WelcomePage:	 		  **GET**  http://localhost:8080/
 
+alive: 	         		  **GET**  http://localhost:8080/management/welcome
+
 initDataLoad:	 		  **GET**  http://localhost:8080/initDataLoad/
 
 getCustomerById: 		  **GET**  http://localhost:8080/customers/getCustomer  		Params: [id] 
@@ -12,8 +14,6 @@ getCustomerById: 		  **GET**  http://localhost:8080/customers/getCustomer  		Par
 getAllCustomers: 		  **GET**  http://localhost:8080/customers/getAllCustomers
 
 insertCustomer:  		  **POST** http://localhost:8080/customers/insertCustomer 	Params: [name,surname]
-
-alive: 	         		  **GET**  http://localhost:8080/management/welcome
 
 getCustomerTransactions:  **GET**  http://localhost:8080/getCustomerTransactions			Params: [customerId]
 

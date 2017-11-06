@@ -5,11 +5,7 @@ import com.videorental.service.VideoRentalService;
 import com.videorental.webModel.TransactionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -18,7 +14,7 @@ import java.util.List;
 /**
  * Created by vegasjm on 05/11/2017.
  */
-@Controller
+@RestController
 @RequestMapping("management")
 public class VideoRentalController {
 
@@ -26,9 +22,9 @@ public class VideoRentalController {
     private VideoRentalService videoRentalService;
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public ModelAndView getDetailsPage() {
+    public @ResponseBody String getDetailsPage() {
         String message = "Hello World!";
-        return new ModelAndView("welcome", "message", message);
+        return message;
     }
 
     @RequestMapping(value = "/getCustomerTransactions", method = RequestMethod.GET,  produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
